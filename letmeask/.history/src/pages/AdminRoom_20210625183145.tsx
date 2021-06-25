@@ -85,7 +85,7 @@ export function AdminRoom() {
               >
 
                {!question.isAnswered && (  
-                 <>
+                 <div>
                   <button
                       type="button"
                       onClick={ () => heandleCheckQuestionAsAnswered(question.id)}
@@ -99,7 +99,7 @@ export function AdminRoom() {
                     >
                       <img src={answerImg} alt="Dar destaque a pergunta" />
                     </button> 
-                </>
+                </div>
                 )}
 
                 <button

@@ -8,22 +8,13 @@
         margin-top: 8px;
     }
 
+    &.answered {
+
+    }
+
     &.hilighted {
         background: #f4f2fa;
         border: 1px solid #835afd;
-
-        footer .user-info span {
-            color: #29292e;
-        }
-    }
-
-    &.answered {
-        background: #dbdcdd;
-
-        footer .user-info span {
-            color: #7f7f86;
-        }
-        
     }
 
     p{

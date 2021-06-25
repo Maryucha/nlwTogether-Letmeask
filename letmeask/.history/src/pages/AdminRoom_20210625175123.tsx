@@ -24,36 +24,21 @@ export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomsParms>();
   const roomId = params.id;
-
-  //aqui ele busca as perguntas
   const { title, questions } = useRoom(roomId);
 
-  //fecha a sala
   async function heandleEndRoom() {
    await database.ref(`rooms/${roomId}`).update({
      endedAt: new Date(),
    })
    history.push('/');
   }
- //deleta a pergunta
+
   async function heandleDeleteQuestion(questionId: string) {
     if(window.confirm('Você tem certeza que deseja excluir essa pergunta?')) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
   }
-  //mostra a pergunta que vai ser respondida
-  async function heandleCheckQuestionAsAnswered(questionId: string) {
-    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({ 
-      isAnswered: true
-    })
-  }
- //deixa a pergunta marcada
-  async function heandleHighligthQuestion(questionId: string) {
-    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({ 
-      isHighligted: true
-    })
-  }
-
+  
   return (
     <div id="page-room">
       <header>
@@ -79,34 +64,27 @@ export function AdminRoom() {
               <Question 
               key={question.id}
               content={question.content} 
-              author={question.author}
-              isAnswered={question.isAnswered}
-              isHighligted={question.isHighligted}
+              author={question.author} 
               >
-
-               {!question.isAnswered && (  
-                 <>
-                  <button
-                      type="button"
-                      onClick={ () => heandleCheckQuestionAsAnswered(question.id)}
-                    >
-                      <img src={checkImg} alt="Marcar a pergunta que está sendo respondida." />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={ () => heandleHighligthQuestion(question.id)}
-                    >
-                      <img src={answerImg} alt="Dar destaque a pergunta" />
-                    </button> 
-                </>
-                )}
+                 <button
+                  type="button"
+                  onClick={ () => heandleDeleteQuestion(question.id)}
+                >
+                  <img src={checkImg} alt="dMarcar a pergunta que está sendo respondida." />
+                </button>
 
                 <button
                   type="button"
                   onClick={ () => heandleDeleteQuestion(question.id)}
                 >
-                  <img src={deleteImg} alt="Deletar pergunta" />
+                  <img src={answerImg} alt="deletar pergunta" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={ () => heandleDeleteQuestion(question.id)}
+                >
+                  <img src={deleteImg} alt="deletar pergunta" />
                 </button>
               </Question>
             );

@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import cx from 'classnames';
 
 //importação da estilização
 import '../styles/question.scss';
@@ -23,12 +22,7 @@ export function Question({
     isHighligted = false,
 }: QuestionProps) {
     return(
-        <div 
-        className={cx(
-            'question', 
-            {answered: isAnswered},
-            {hilighted: isHighligted && !isAnswered},
-        )}>
+        <div className={`question ? 'answered' : ''} ${isHighligted ? 'highligted' : ''}`}>
             <p>{ content }</p>
             <footer>
                 <div className="user-info">

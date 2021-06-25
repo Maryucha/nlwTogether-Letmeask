@@ -27,7 +27,8 @@ export function Question({
         className={cx(
             'question', 
             {answered: isAnswered},
-            {hilighted: isHighligted && !isAnswered},
+            {hilighted: isHighligted},
+
         )}>
             <p>{ content }</p>
             <footer>
