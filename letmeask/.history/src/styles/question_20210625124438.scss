@@ -1,0 +1,24 @@
+.question {
+    background: #fefefe;
+    border-radius: 0 2px 12px rgba(0,0,0,0.4);
+    padding: 24px;
+
+    & + .question {
+        margin-top: 8px;
+    }
+
+    p{
+        color: #29292e;
+    }
+
+    footer {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-top: 24px;
+    }
+
+    .user-info {
+       
+    }
+}
